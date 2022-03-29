@@ -31,49 +31,51 @@ BBL = butterworth_filter(6,20,'low');
 figure;
 
 subplot(5,1,1);
-title('Initial signals');
+title('Исходные сигналы');
 hold on;
 grid on;
 plot(t, x0, 'r');
 plot(t, x1, 'g');
 plot(t, x2, 'b');
-legend('No noise', 'Gaussian noise', 'Impulsive noise');
+legend('Без помех', 'Помеха по Гауссу', 'Импульсная помеха');
 
 subplot(5,1,2);
-title('Gaussian filter (high freq)');
+title('Гауссовский фильтр (high)');
 hold on;
 grid on;
 plot(t, x0, 'r');
 plot(t, x1-filtfilt(GH,1,x1), 'g');
 plot(t, x2-filtfilt(GH,1,x2), 'b');
-legend('No noise', 'Gaussian noise', 'Impulsive noise');
+legend('Без помех', 'Помеха по Гауссу', 'Импульсная помеха');
 
 subplot(5,1,3);
-title('Gaussian filter (low freq)');
+title('Гауссовский фильтр (low)');
 hold on;
 grid on;
 plot(t, x0, 'r');
 plot(t, filtfilt(GL,1,x1), 'g');
 plot(t, filtfilt(GL,1,x2), 'b');
-legend('No noise', 'Gaussian noise', 'Impulsive noise');
+legend('Без помех', 'Помеха по Гауссу', 'Импульсная помеха');
 
 subplot(5,1,4);
-title('Butterworth filter (high freq)');
+title('Фильтр Баттеруорта (high)');
 hold on;
 grid on;
 plot(t, x0, 'r');
 plot(t, x1-filtfilt(BBH,1,x1), 'g');
 plot(t, x2-filtfilt(BBH,1,x2), 'b');
-legend('No noise', 'Gaussian noise', 'Impulsive noise');
+legend('Без помех', 'Помеха по Гауссу', 'Импульсная помеха');
 
 subplot(5,1,5);
-title('Butterworth filter (low freq)');
+title('Фильтр Баттеруорта (low)');
 hold on;
 grid on;
 plot(t, x0, 'r');
 plot(t, filtfilt(BBL,1,x1), 'g');
-plot(t, filtfilt(BBL,1,x2), 'b');
-legend('No noise', 'Gaussian noise', 'Impulsive noise');
+wait = plot(t, filtfilt(BBL,1,x2), 'b');
+legend('Без помех', 'Помеха по Гауссу', 'Импульсная помеха');
+
+waitfor(wait)
 end
 
 % Gaussian impulse
